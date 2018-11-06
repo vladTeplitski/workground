@@ -1,14 +1,73 @@
 //app JS lib
-//manual: http://www.chartjs.org/docs/latest/general/accessibility.html
+//options manual: http://www.chartjs.org/docs/latest/general/accessibility.html
+
+//test url: https://irwebsites.co.il/workground/index.html
+
+//Globals
+var json_obj;
 
 function initialize(){
-    createChart();
+    
+    callPhp();
 }
 
+//call PHP json data
+
+function callPhp(){
+    var obj;
+    var myjson;
+    document.getElementById("debug1").innerHTML = "TEST!";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        obj = JSON.parse(this.responseText);
+        var myjson = JSON.stringify(obj);
+        json_obj = myjson; //Store to global var
+        document.getElementById("debug2").innerHTML = myjson;
+    }
+    };
+    xmlhttp.open("GET", "getData.php", true);
+    xmlhttp.send(); 
+
+    createChart();
+    
+}
+
+//Data builders
+function buildxData(){
+    //document.getElementById("debug3").innerHTML = "Into buildxData";
+    //var data = callPhp();
+    //document.getElementById("debug4").innerHTML = data.date1;
+    //var arr = [];
+    //arr.push(data.date1);
+    //arr.push(data.date2);
+    //arr.push(data.date3);
+    //arr.push(data.date4);
+    //arr.push(data.date5);
+
+    //var finalData = [];
+    //for(i=0;i<arr.length();i++){
+    //    if(arr[i]!="-"){
+    //        finalData.push(arr[i]);
+    //    }
+    //}
+
+    var data = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
+    document.getElementById("debug4").innerHTML = "Using json data";
+    document.getElementById("debug4").innerHTML = json_obj;
+    return data;
+}
+
+//function buildyData(){
+//    var data = callPhp()
+//    return data;
+//}
+
+
+//Chart builder
 function createChart(){
         //x axis values
-       var x_data = [1501,1600,1700,1750,1800,1850,1900,1950,1999,2050];
-
+        var x_data = buildxData();
        //chart Object init
        data = {
         labels: x_data,
@@ -48,6 +107,7 @@ function createChart(){
 
       var graph02 = Object.create(graph);
       graph02.data = [40,20,1000,16,24,2000,74,4500,508,784];
+      //graph02.data = [40,20];
       graph02.label = "Haifa";
       graph02.borderColor = "#c45850";
 
@@ -62,3 +122,4 @@ function createChart(){
         data: data
       });  
 }
+
