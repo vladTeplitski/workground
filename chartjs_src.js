@@ -40,7 +40,11 @@ function getResult()
   {
     interval = clearInterval(interval);
     //create json from the data
+    
     var newobj = JSON.parse(json_obj);
+
+    //print the data json
+    document.getElementById("debug4").innerHTML = "newobj= " + JSON.stringify(newobj, null, 2);;
     createChart(newobj);
   }
 }
@@ -86,6 +90,8 @@ function buildyData(data){
   var finalData = [];
   for(i=0;i<arr.length;i++){
       if(arr[i]!="-"){
+          arr[i]=arr[i].replace(/\,/g,''); // remove comma
+          arr[i]=parseInt(arr[i],10);
           finalData.push(arr[i]);
       }
   }
@@ -98,9 +104,10 @@ function buildyData(data){
 
 //Chart builder
 function createChart(dataset){
-  //document.getElementById("debug4").innerHTML = dataset;
+  
         //x axis values
         var x_data = buildxData(dataset);
+        var y_data = buildyData(dataset);
        //chart Object init
        data = {
         labels: x_data,
@@ -113,6 +120,7 @@ function createChart(dataset){
         data: [],
         label: "",
         borderColor: "",
+        lineTension: 0,
         fill: false
       };
       var options = {
@@ -120,6 +128,11 @@ function createChart(dataset){
         scales: {
           yAxes: [{
             stacked: true,
+            ticks: {
+              padding: 1,
+              min: 0,
+              stepSize: 70000,
+            },
             gridLines: {
               display: true,
               color: "#B8D7EC"
@@ -127,7 +140,8 @@ function createChart(dataset){
           }],
           xAxes: [{
             gridLines: {
-              display: false
+              display: true,
+              color: "#B8D7EC"
             }
           }]
         }};
@@ -140,9 +154,16 @@ function createChart(dataset){
 
       var graph02 = Object.create(graph);
       //graph02.data = [40,20,1000,16,24,2000,74,4500,508,784];
-      graph02.data = [40,20,40,30,45];
+      //graph02.data = [40,20,40,30,45];
+      graph02.data = y_data;
       graph02.label = "Weekly";
-      graph02.borderColor = "#128435";
+      graph02.fill = true;
+      graph02.borderColor = "#0F4468";
+      graph02.borderWidth = "1";
+      graph02.pointRadius= "5";
+      graph02.pointHoverRadius= "7";
+      graph02.pointHoverBackgroundColor = "#8291C7";
+      graph02.pointHoverBorderColor = "#8291C7";
 
       //add graphs
       //data.datasets.push(graph01);
