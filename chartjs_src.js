@@ -7,6 +7,9 @@
 var json_obj = null;
 var interval;
 
+//Number of data types: Data build model in row: [Type1, Type2 , Type3...]
+var typesNum = 3;
+
 function initialize(){
     
     callPhp();
@@ -49,19 +52,35 @@ function getResult()
   }
 }
 
-//Data builders
+//Data builders ***************************
+// Data built in php from json
+// pointsShift - Used in case of data type: [X values ... Y values...]
+
+// ** Weekly **
+//Data set structure: [Dates,Vol]
+
+//Weekly X
 function buildxData(data){
+    //TODO - Add shift to function arg
+    var pointsShift = 0;  //X data is in the start
     var arr = [];
     var i;
     document.getElementById("debug5").innerHTML = "Into buildxData";
-    
-    arr.push(data.date1);
-    arr.push(data.date2);
-    arr.push(data.date3);
-    arr.push(data.date4);
-    arr.push(data.date5);
 
-    document.getElementById("debug6").innerHTML = arr;
+    var convertToArr = Object.keys(data).map(i => data[i]); // Convert to array    
+
+    document.getElementById("debug6").innerHTML = "Converted: " + convertToArr + "Place 0 = " + convertToArr[0];
+    
+    var l = convertToArr.length;
+    var j = l/typesNum; //number of values to push EDIT IF NEW DATA KIND ADDED TO DATASET - typesNum global var
+
+    // Dynamic values add
+
+    for(i=pointsShift;i<j;i++){
+      arr.push(convertToArr[i]);
+    }
+
+
     var finalData = [];
     for(i=0;i<arr.length;i++){
         if(arr[i]!="-"){
@@ -74,19 +93,27 @@ function buildxData(data){
     return finalData;
 }
 
-
+//Weekly Y
 function buildyData(data){
+  
+  var pointsShift = 5;  //Y data is after the X data , Week = 5 days = 5 points. Change this value according to points number. Jump 5 places.
   var arr = [];
   var i;
   document.getElementById("debug8").innerHTML = "Into buildyData";
   
-  arr.push(data.vol1);
-  arr.push(data.vol2);
-  arr.push(data.vol3);
-  arr.push(data.vol4);
-  arr.push(data.vol5);
+  var convertToArr = Object.keys(data).map(i => data[i]); // Convert to array 
+  
+  document.getElementById("debug9").innerHTML = "Converted: " + convertToArr + "Place 5 = " + convertToArr[pointsShift];
 
-  document.getElementById("debug9").innerHTML = arr;
+  var l = convertToArr.length;
+  var j = l/typesNum + pointsShift; //number of values to push EDIT IF NEW DATA KIND ADDED TO DATASET - typesNum global var
+
+  // Dynamic values add
+
+  for(i=pointsShift;i<j;i++){
+    arr.push(convertToArr[i]);
+  }
+
   var finalData = [];
   for(i=0;i<arr.length;i++){
       if(arr[i]!="-"){
@@ -100,7 +127,11 @@ function buildyData(data){
   document.getElementById("debug10").innerHTML = finalData;
   return finalData;
 }
+// ** END Weekly **
 
+
+
+//END Data builders ***************************
 
 //Chart builder
 function createChart(dataset){
@@ -125,6 +156,32 @@ function createChart(dataset){
       };
       var options = {
         maintainAspectRatio: false,
+        tooltips: {
+          //TODO *****************************************************
+          callbacks: {
+            title: function(tooltipItem, data) {
+              return data['labels'][tooltipItem[0]['index']];
+            },
+            label: function(tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']];
+            },
+            afterLabel: function(tooltipItem, data) {
+              var dataset = data['datasets'][0];
+              //var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0][0]) * 100);
+              var percent = dataset['data'][tooltipItem['index']];
+
+              return percent;
+            }
+          }
+        },
+        // END TODO *****************************************************
+        legend: {
+          display: true,
+          labels: {
+              position: top,
+              fontColor: '#0F4468',
+          }
+        },
         scales: {
           yAxes: [{
             stacked: true,

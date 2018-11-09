@@ -303,17 +303,7 @@ if($ThursdayPreviousClose!="-"){
     $ThursdayPreviousClose=number_format($ThursdayPreviousClose,2);
 }
 
-#echo "<br> ThursdayOpeningPrice: ". $ThursdayOpeningPrice . "<br>";
-
-#DB usage
-#$conn = new mysqli($servername, $username, $password, $dbname);
-#if ($conn->connect_error) {
-#   die("Connection failed: " . $conn->connect_error);
-#}
-
-#$sql = "SELECT emailID, privateName, lastName FROM users WHERE weeklyflag=1";
-#$result = $conn->query($sql);
-
+#Data build model in row: [Type1, Type2 , Type3...]
 $obj = (object) [
     'date1' => $apiDateSunday,
     'date2' => $apiDateMonday,
@@ -325,6 +315,11 @@ $obj = (object) [
     'vol3' => $TuesdayVolume,
     'vol4' => $WednesdayVolume,
     'vol5' => $ThursdayVolume,
+    'Prev1' => $SundayPreviousClose,
+    'Prev2' => $MondayPreviousClose,
+    'Prev3' => $TuesdayPreviousClose,
+    'Prev4' => $WednesdayPreviousClose,
+    'Prev5' => $ThursdayPreviousClose,
 ];
 echo json_encode($obj);
 
