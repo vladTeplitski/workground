@@ -13,7 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
 <!--Include js & angular code libraries-->
-<script type="text/javascript" src="chartjs_src.js"></script>
+<script type="text/javascript" src="project_src.js"></script>
 <script type="text/javascript" src="app.js"></script>
 
 <!--Include design sheets-->
@@ -21,11 +21,27 @@
 
 </head>
 
-<body onload="initialize()">
+<body ng-app="chartsApp" onload="initialize()">
 
-    <div class="chart-container">
+<div ng-controller="mainController">
+<!--START mainController-->
+
+<!--Show/Hide buttons-->
+<input type="button" ng-click="showHideFunc('show')" value="Weekly"> 
+<input type="button" ng-click="showHideFunc('hide')" value="Not Weekly">
+<br />
+
+<!--Weekly chart-->
+<div ng-show="showval" class="chart-container">
         <canvas id="chart"></canvas>
-    </div>
+</div>
+
+<div ng-hide="hideval">
+    <p>Not weekly chart</p>
+</div>
+
+<!--END mainController-->
+</div>
 
     <p id="debug1"></p>
     <p id="debug2"></p>
