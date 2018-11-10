@@ -6,8 +6,10 @@
 //Globals
 var json_obj = null;
 var json_obj_Month = null;
+var json_obj_Year = null;
 var interval;
 var intervalMonth;
+var intervalYear;
 
 //Number of data types: Data build model in row: [Type1, Type2 , Type3...]
 var typesNum = 3;
@@ -16,6 +18,7 @@ function initialize(){
     
     callPhpWeek();
     callPhpMonth();
+    callPhpYear();
 }
 
 //*********  call PHP json data **********
@@ -53,6 +56,24 @@ function callPhpMonth(){
   }
   };
   xmlhttp.open("GET", "getDataMonth.php", true);
+  xmlhttp.send(); 
+}
+
+//Year
+function callPhpYear(){
+  var obj;
+  var myjson;
+  //document.getElementById("debug1").innerHTML = "TEST!";
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+      obj = JSON.parse(this.responseText);
+      var myjson = JSON.stringify(obj);
+      json_obj_Year = myjson; //Store to global var
+      //document.getElementById("debug2").innerHTML = myjson;
+  }
+  };
+  xmlhttp.open("GET", "getDataYear.php", true);
   xmlhttp.send(); 
 }
 
@@ -97,6 +118,27 @@ function getResultMonth()
 
     // -- Create the chart --
     createChartMonth(newobj);
+  }
+}
+
+
+//Year
+intervalYear = setInterval("getResultYear()", 400);
+function getResultYear()
+{
+    // once we get a result, turn interval off. 
+  if(json_obj_Year != null)
+  {
+    intervalYear = clearInterval(intervalYear);
+    //create json from the data
+    
+    var newobj = JSON.parse(json_obj_Year);
+
+    //print the data json
+    //document.getElementById("debug11").innerHTML = "Month newobj= " + JSON.stringify(newobj, null, 2);
+
+    // -- Create the chart --
+    createChartYear(newobj);
   }
 }
 
@@ -253,6 +295,82 @@ function buildyDataMonth(data){
     return finalData;
 }
 // ** END Monthly **
+
+
+// ** Start Yearly ***
+//Data set structure: [Dates,Vol]
+
+//Month X
+function buildxDataYear(data){
+  //TODO - Add shift to function arg
+  var pointsShift = 0;  //X data is in the start
+  var arr = [];
+  var i;
+  //document.getElementById("debug5").innerHTML = "Into buildxData";
+
+  var convertToArr = Object.keys(data).map(i => data[i]); // Convert to array    
+
+  //document.getElementById("debug6").innerHTML = "Converted: " + convertToArr + "Place 0 = " + convertToArr[0];
+  
+  var l = convertToArr.length;
+  var j = l/2; //number of values to push EDIT IF NEW DATA KIND ADDED TO DATASET - typesNum global var
+
+  // Dynamic values add
+
+  for(i=pointsShift;i<j;i++){
+    arr.push(convertToArr[i]);
+  }
+
+
+  var finalData = [];
+  for(i=0;i<arr.length;i++){
+      if(arr[i]!="-"){
+          finalData.push(arr[i]);
+      }
+  }
+
+  //var finalData = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
+  //document.getElementById("debug7").innerHTML = finalData;
+  return finalData;
+}
+
+//Month Y
+function buildyDataYear(data){
+
+    //Deprecated: var pointsShift = 21;  //Y data is after the X data , Week = 5 days = 5 points. Change this value according to points number. Jump 5 places.
+    var arr = [];
+    var i;
+    //document.getElementById("debug8").innerHTML = "Into buildyData";
+
+    var convertToArr = Object.keys(data).map(i => data[i]); // Convert to array 
+
+    //document.getElementById("debug9").innerHTML = "Converted: " + convertToArr + "Place 5 = " + convertToArr[pointsShift];
+
+    var l = convertToArr.length;
+    var pointsShift = l/2; //Will be l/typesnum
+    var j = l/2 + pointsShift; //number of values to push EDIT IF NEW DATA KIND ADDED TO DATASET - typesNum global var
+
+    // Dynamic values add
+
+    for(i=pointsShift;i<j;i++){
+      arr.push(convertToArr[i]);
+    }
+
+    var finalData = [];
+    for(i=0;i<arr.length;i++){
+        if(arr[i]!="-"){
+            arr[i]=arr[i].replace(/\,/g,''); // remove comma
+            arr[i]=parseInt(arr[i],10);
+            finalData.push(arr[i]);
+        }
+    }
+
+    //var finalData = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
+    //document.getElementById("debug10").innerHTML = finalData;
+    return finalData;
+}
+// ** END Yearly **
+
 
 //END Data builders ***************************
 
@@ -473,4 +591,114 @@ function createChartMonth(dataset){
 }
 
 // **** END Create month chart *****
+
+
+// **** START Create Year chart *****
+function createChartYear(dataset){
+  
+  document.getElementById("debug15").innerHTML = "Into createChartYear()";
+    //x axis values
+    var x_data = buildxDataYear(dataset);
+    var y_data = buildyDataYear(dataset);
+
+
+    //chart Object init
+
+    //Month data
+    data = {
+      labels: x_data,
+      datasets: []
+    };
+
+    //build generic graph objects
+    var graph = 
+    { 
+      data: [],
+      label: "",
+      borderColor: "",
+      lineTension: 0,
+      fill: false
+    };
+    var options = {
+      maintainAspectRatio: false,
+      tooltips: {
+        callbacks: {
+          title: function(tooltipItem, data) {
+            return data['labels'][tooltipItem[0]['index']];
+          },
+          //Commas in tooltip
+          label: function(tooltipItem, data) {
+            var value = data.datasets[0].data[tooltipItem.index];
+            if(parseInt(value) >= 1000){
+                       return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    } else {
+                       return '$' + value;
+                    }
+        }
+        //** TODO: Add more properties in tooltip */
+        }
+      },
+      
+      legend: {
+        display: true,
+        labels: {
+            position: top,
+            fontColor: '#0F4468',
+        }
+      },
+      scales: {
+        yAxes: [{
+          stacked: true,
+          ticks: {
+            padding: 1,
+            min: 0,
+            stepSize: 350000,
+            //Add commas to the scale
+            userCallback: function(value, index, values) {
+              value = value.toString();
+              value = value.split(/(?=(?:...)*$)/);
+              value = value.join(',');
+              return value;
+          }
+          },
+          gridLines: {
+            display: true,
+            color: "#B8D7EC"
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "#B8D7EC"
+          }
+        }]
+      }};
+
+    //*** create new graph object ***
+
+    var graphYear = Object.create(graph);
+    graphYear.data = y_data;
+    graphYear.label = "Last Year Statisctics";
+    graphYear.fill = true;
+    graphYear.borderColor = "#D01D1D";
+    graphYear.borderWidth = "1";
+    graphYear.pointRadius= "2";
+    graphYear.pointHoverRadius= "3";
+    graphYear.pointHoverBackgroundColor = "#CE5050";
+    graphYear.pointHoverBorderColor = "#E17272";
+
+    //*** add graphs ***
+    data.datasets.push(graphYear);
+
+    //*** Build the chart  ***
+     //Year
+    new Chart(document.getElementById("chartYear"), {
+      type: 'line',
+      options: options,
+      data: data
+    });  
+
+}
+
+// **** END Create Year chart *****
 
