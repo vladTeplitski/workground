@@ -1,6 +1,7 @@
 <?php
+#Week Dataset
 #Graph datasets server side functionality
-#Test url: https://irwebsites.co.il/workground/getData.php
+#Test url: https://irwebsites.co.il/workground/getDataWeek.php
 
 #Connect to DB
 include "/code/mysql/database.php";

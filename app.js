@@ -2,8 +2,8 @@ var app = angular.module("chartsApp", []);
 
 app.controller('mainController', function ($scope) {
     $scope.showval = true;
-    $scope.hideval = false;
-    
+    $scope.hideval = true;
+
     $scope.showHideFunc = function (param) {
 
         if (param == "show") {

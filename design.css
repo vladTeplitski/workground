@@ -13,3 +13,10 @@ body {
     height: 450px;
     width: 800px;
   }
+
+  .mainButtons {
+    position: relative;
+    margin: auto;
+    height: 80px;
+    width: 200px;
+  }

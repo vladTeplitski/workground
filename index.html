@@ -27,8 +27,10 @@
 <!--START mainController-->
 
 <!--Show/Hide buttons-->
-<input type="button" ng-click="showHideFunc('show')" value="Weekly"> 
-<input type="button" ng-click="showHideFunc('hide')" value="Not Weekly">
+<div class="mainButtons">
+<input type="button" ng-click="showHideFunc('show')" value="Week"> 
+<input type="button" ng-click="showHideFunc('hide')" value="Month">
+</div>
 <br />
 
 <!--Weekly chart-->
@@ -36,8 +38,8 @@
         <canvas id="chart"></canvas>
 </div>
 
-<div ng-hide="hideval">
-    <p>Not weekly chart</p>
+<div ng-hide="hideval" class="chart-container">
+    <canvas id="chartMonth"></canvas>
 </div>
 
 <!--END mainController-->
@@ -53,6 +55,10 @@
     <p id="debug8"></p>
     <p id="debug9"></p>
     <p id="debug10"></p>
+    <p id="debug11"></p>
+    <p id="debug12"></p>
+    <p id="debug13"></p>
+    <p id="debug14"></p>
 
 
 
