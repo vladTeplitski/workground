@@ -103,7 +103,7 @@ for($i = 0; $i <= ($monthDays-1); $i++) {
 
 #Create variables with vol
 for($i = 0; $i <= ($monthDays-1); $i++) {
-    ${"srcVol$i"} = $resultsjson['History']['Entry'][$i]['Turnover'];
+    ${"srcLock$i"} = $resultsjson['History']['Entry'][$i]['LockRate'];
     #echo "<br>";
     #echo ${"srcVol$i"};
 }
@@ -117,7 +117,7 @@ for($i = 0; $i <= ($monthDays-1); $i++) {
     $obj->{"date$i"} = ${"srcDate$i"};
 }
 for($i = 0; $i <= ($monthDays-1); $i++) {
-    $obj->{"vol$i"} = ${"srcVol$i"};
+    $obj->{"lock$i"} = ${"srcLock$i"};
 }
 
 #echo the final json dataset:

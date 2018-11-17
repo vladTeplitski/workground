@@ -1,7 +1,7 @@
 <?php
-#Month - dataset
+#Half Year - dataset
 #Graph datasets server side functionality
-#Test url: https://irwebsites.co.il/workground/getDataMonth.php
+#Test url: https://irwebsites.co.il/workground/getData6Month.php
 
 #Connect to DB
 include "/code/mysql/database.php";
@@ -60,8 +60,8 @@ $todayDate=date("dmY");
 #echo "<br>";
 #END test dates
 
-#Shift data 1 month back
-$shiftDate=date("dmY",strtotime("-1 months"));
+#Shift data 1 year back
+$shiftDate=date("dmY",strtotime("-6 months"));
 #echo "Shift date:"."<br>";
 #echo $shiftDate;
 #echo "<br>";

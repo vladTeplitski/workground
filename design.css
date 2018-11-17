@@ -2,6 +2,10 @@ body {
     background: rgb(255, 255, 255);
     padding: 16px;
   }
+
+  .chartsAppMain{
+    display: none;
+  }
   
   canvas {
     border: 1px dotted rgb(169, 209, 255);
@@ -18,5 +22,13 @@ body {
     position: relative;
     margin: auto;
     height: 80px;
-    width: 200px;
+    width: 800px;
   }
+  .debug {
+    position: relative;
+    margin: auto;
+    height: auto;
+    width: auto;
+    color: #35D329;
+    background-color: black;
+    }
