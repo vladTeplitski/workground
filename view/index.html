@@ -28,16 +28,13 @@
 
 <body ng-app="chartsApp" onload="initialize()">
 
-    
-<p>--Start--</p>
-
-<!--Loader-->
-
 
 <div  ng-controller="mainController">
 <!--START mainController-->
 <!--Charts App-->
-<div id="contentLoader" ng-show="loaderStatus" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<!--<div id="contentLoader" ng-show="loaderStatus" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> -->
+
+<div id="contentLoader" ng-show="loaderStatus"  class="lds-ripple"><div></div><div></div></div>
 
 <div id="appCharts">
 
@@ -104,11 +101,6 @@
     </div>
     <!--Debug section-->
 
-    
-
-
-
-    <p>--END--</p>
 </body>
 
 </html>
