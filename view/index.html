@@ -45,11 +45,18 @@
 <input type="button" ng-click="showHideFunc('show3Month');" value="3 Months">
 <input type="button" ng-click="showHideFunc('show6Month');" value="6 Months">
 <input type="button" ng-click="showHideFunc('showYear');" value="Year">
+<input type="button" ng-click="showHideFunc('show3year');" value="3 Years">
+<input type="button" ng-click="showHideFunc('show5year');" value="5 Years">
 </div>
 
 <!--Weekly chart-->
 <div ng-show="showval" class="chart-container">
         <button onclick="resetZoomWeek()">Reset Zoom</button>
+        <div class="weekInfoBox">
+                <p id="weekDate"></p>
+                <p id="weekLockRate"></p>
+                <p id="weekPrevClose"></p>                
+        </div>
         <canvas id="chart"></canvas>
 </div>
 
@@ -71,6 +78,16 @@
 <div ng-hide="hideval2" class="chart-container">
     <button onclick="resetZoomYear()">Reset Zoom</button>
     <canvas id="chartYear"></canvas>
+</div>
+
+<div ng-hide="hideval3y" class="chart-container">
+    <button onclick="resetZoom3year()">Reset Zoom</button>
+<canvas id="chart3Year"></canvas>
+</div>
+
+<div ng-hide="hideval5y" class="chart-container">
+    <button onclick="resetZoom5year()">Reset Zoom</button>
+<canvas id="chart5Year"></canvas>
 </div>
 
 </div>
@@ -97,6 +114,7 @@
         <p id="debug16"></p>
         <p id="debug17"></p>
         <p id="debug18"></p>
+        <p id="debug60"></p>
         
     </div>
     <!--Debug section-->
