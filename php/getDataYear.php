@@ -101,12 +101,49 @@ for($i = 0; $i <= ($monthDays-1); $i++) {
 }
 #echo "<br><br>";
 
-#Create variables with vol
+#Create variables with LockRate
 for($i = 0; $i <= ($monthDays-1); $i++) {
     ${"srcLock$i"} = $resultsjson['History']['Entry'][$i]['LockRate'];
     #echo "<br>";
     #echo ${"srcVol$i"};
 }
+
+#Create variables with BaseRate
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    ${"srcBaseRate$i"} = $resultsjson['History']['Entry'][$i]['BaseRate'];
+    #echo "<br>";
+    #echo ${"srcVol$i"};
+}
+
+#Create variables with OpeningRate
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    ${"srcOpeningRate$i"} = $resultsjson['History']['Entry'][$i]['OpeningRate'];
+    #echo "<br>";
+    #echo ${"srcVol$i"};
+}
+
+#Create variables with DailyHigh
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    ${"srcDailyHigh$i"} = $resultsjson['History']['Entry'][$i]['DailyHigh'];
+    #echo "<br>";
+    #echo ${"srcVol$i"};
+}
+
+#Create variables with DailyLow
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    ${"srcDailyLow$i"} = $resultsjson['History']['Entry'][$i]['DailyLow'];
+    #echo "<br>";
+    #echo ${"srcVol$i"};
+}
+
+#Create variables with Turnover
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    ${"srcTurnover$i"} = $resultsjson['History']['Entry'][$i]['Turnover'];
+    #echo "<br>";
+    #echo ${"srcVol$i"};
+}
+
+
 
 #Create an object
 $obj = (object) [];
@@ -118,6 +155,21 @@ for($i = 0; $i <= ($monthDays-1); $i++) {
 }
 for($i = 0; $i <= ($monthDays-1); $i++) {
     $obj->{"lock$i"} = ${"srcLock$i"};
+}
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    $obj->{"baseRate$i"} = ${"srcBaseRate$i"};
+}
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    $obj->{"openingRate$i"} = ${"srcOpeningRate$i"};
+}
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    $obj->{"dailyHigh$i"} = ${"srcDailyHigh$i"};
+}
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    $obj->{"dailyLow$i"} = ${"srcDailyLow$i"};
+}
+for($i = 0; $i <= ($monthDays-1); $i++) {
+    $obj->{"turnover$i"} = ${"srcTurnover$i"};
 }
 
 #echo the final json dataset:

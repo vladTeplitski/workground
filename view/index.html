@@ -17,6 +17,8 @@
 <script type="text/javascript" src="../lib/chartjs-plugin-zoom.min.js"></script>
 
 <!--Include js & angular code libraries-->
+<script type="text/javascript" src="../lib/data_builders.js"></script>
+<script type="text/javascript" src="../lib/server_calls.js"></script>
 <script type="text/javascript" src="../lib/project_src.js"></script>
 <script type="text/javascript" src="../lib/app.js"></script>
 
@@ -52,41 +54,99 @@
 <!--Weekly chart-->
 <div ng-show="showval" class="chart-container">
         <button onclick="resetZoomWeek()">Reset Zoom</button>
-        <div class="weekInfoBox">
+        <div class="InfoBox">
                 <p id="weekDate"></p>
                 <p id="weekLockRate"></p>
-                <p id="weekPrevClose"></p>                
+                <p id="weekPrevClose"></p> 
+                <p id="weekOpeningRate"></p> 
+                <p id="weekDailyHigh"></p> 
+                <p id="weekDailyLow"></p> 
+                <p id="weekTurnover"></p>                
         </div>
         <canvas id="chart"></canvas>
 </div>
 
 <div ng-hide="hideval" class="chart-container">
         <button onclick="resetZoomMonth()">Reset Zoom</button>
+        <div class="InfoBox">
+                <p id="monthDate"></p>
+                <p id="monthLockRate"></p>
+                <p id="monthPrevClose"></p> 
+                <p id="monthOpeningRate"></p> 
+                <p id="monthDailyHigh"></p> 
+                <p id="monthDailyLow"></p> 
+                <p id="monthTurnover"></p>                
+        </div>
     <canvas id="chartMonth"></canvas>
 </div>
 
 <div ng-hide="hideval3m" class="chart-container">
     <button onclick="resetZoom3Month()">Reset Zoom</button>
+    <div class="InfoBox">
+            <p id="month3Date"></p>
+            <p id="month3LockRate"></p>
+            <p id="month3PrevClose"></p> 
+            <p id="month3OpeningRate"></p> 
+            <p id="month3DailyHigh"></p> 
+            <p id="month3DailyLow"></p> 
+            <p id="month3Turnover"></p>                
+    </div>
 <canvas id="chart3Month"></canvas>
 </div>
 
 <div ng-hide="hideval6m" class="chart-container">
     <button onclick="resetZoom6Month()">Reset Zoom</button>
+    <div class="InfoBox">
+            <p id="month6Date"></p>
+            <p id="month6LockRate"></p>
+            <p id="month6PrevClose"></p> 
+            <p id="month6OpeningRate"></p> 
+            <p id="month6DailyHigh"></p> 
+            <p id="month6DailyLow"></p> 
+            <p id="month6Turnover"></p>                
+    </div>
 <canvas id="chart6Month"></canvas>
 </div>
 
 <div ng-hide="hideval2" class="chart-container">
     <button onclick="resetZoomYear()">Reset Zoom</button>
+    <div class="InfoBox">
+            <p id="yearDate"></p>
+            <p id="yearLockRate"></p>
+            <p id="yearPrevClose"></p> 
+            <p id="yearOpeningRate"></p> 
+            <p id="yearDailyHigh"></p> 
+            <p id="yearDailyLow"></p> 
+            <p id="yearTurnover"></p>                
+    </div>
     <canvas id="chartYear"></canvas>
 </div>
 
 <div ng-hide="hideval3y" class="chart-container">
     <button onclick="resetZoom3year()">Reset Zoom</button>
+    <div class="InfoBox">
+            <p id="year3Date"></p>
+            <p id="year3LockRate"></p>
+            <p id="year3PrevClose"></p> 
+            <p id="year3OpeningRate"></p> 
+            <p id="year3DailyHigh"></p> 
+            <p id="year3DailyLow"></p> 
+            <p id="year3Turnover"></p>                
+    </div>
 <canvas id="chart3Year"></canvas>
 </div>
 
 <div ng-hide="hideval5y" class="chart-container">
     <button onclick="resetZoom5year()">Reset Zoom</button>
+    <div class="InfoBox">
+            <p id="year5Date"></p>
+            <p id="year5LockRate"></p>
+            <p id="year5PrevClose"></p> 
+            <p id="year5OpeningRate"></p> 
+            <p id="year5DailyHigh"></p> 
+            <p id="year5DailyLow"></p> 
+            <p id="year5Turnover"></p>                
+    </div>
 <canvas id="chart5Year"></canvas>
 </div>
 

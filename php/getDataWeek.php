@@ -321,6 +321,27 @@ $obj = (object) [
     'Prev3' => $TuesdayPreviousClose,
     'Prev4' => $WednesdayPreviousClose,
     'Prev5' => $ThursdayPreviousClose,
+    'openingRate1' => $SundayOpeningPrice,
+    'openingRate2' => $MondayOpeningPrice,
+    'openingRate3' => $TuesdayOpeningPrice,
+    'openingRate4' => $WednesdayOpeningPrice,
+    'openingRate5' => $ThursdayOpeningPrice,
+    'dailyHigh1' => $SundayDayHigh,
+    'dailyHigh2' => $MondayDayHigh,
+    'dailyHigh3' => $TuesdayDayHigh,
+    'dailyHigh4' => $WednesdayDayHigh,
+    'dailyHigh5' => $ThursdayDayHigh,
+    'dailyLow1' => $SundayDayLow,
+    'dailyLow2' => $MondayDayLow,
+    'dailyLow3' => $TuesdayDayLow,
+    'dailyLow4' => $WednesdayDayLow,
+    'dailyLow5' => $ThursdayDayLow,
+    'turnover1' => $SundayVolume,
+    'turnover2' => $MondayVolume,
+    'turnover3' => $TuesdayVolume,
+    'turnover4' => $WednesdayVolume,
+    'turnover5' => $ThursdayVolume,
+
 ];
 echo json_encode($obj);
 

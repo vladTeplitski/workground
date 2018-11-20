@@ -32,15 +32,22 @@ body {
     color: #35D329;
     background-color: black;
     }
-    .weekInfoBox{
-      width: 40%;
-      height: auto;
+    .InfoBox{
+      margin-top: 3px;
+      margin-bottom: 3px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 0.5px;
+      width: 20%;
+      position: relative;
       display: block;
       border-style: solid;
       border-width: 1px;
+      border-radius: 10px;
       border-color: #6890E9;
       color: #2762EA;
-      font-style: normal;
+      font-family: Arial, Helvetica, sans-serif;
       font-size: small;
-      margin: 4px;
+      background-color: #C5D1ED;
     }
+ 
