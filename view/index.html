@@ -56,12 +56,12 @@
         <button onclick="resetZoomWeek()">Reset Zoom</button>
         <div class="InfoBox">
                 <p id="weekDate"></p>
-                <p id="weekLockRate"></p>
-                <p id="weekPrevClose"></p> 
-                <p id="weekOpeningRate"></p> 
-                <p id="weekDailyHigh"></p> 
-                <p id="weekDailyLow"></p> 
-                <p id="weekTurnover"></p>                
+                <p id="weekLockRate"> </p>
+                <p id="weekPrevClose"> </p> 
+                <p id="weekOpeningRate"> </p> 
+                <p id="weekDailyHigh"> </p> 
+                <p id="weekDailyLow"> </p> 
+                <p id="weekTurnover"> </p>                
         </div>
         <canvas id="chart"></canvas>
 </div>
@@ -123,8 +123,8 @@
 </div>
 
 <div ng-hide="hideval3y" class="chart-container">
-    <button onclick="resetZoom3year()">Reset Zoom</button>
-    <div class="InfoBox">
+    <button onclick="resetZoom3Year()">Reset Zoom</button>
+    <div id="infoBox3y" class="InfoBox">
             <p id="year3Date"></p>
             <p id="year3LockRate"></p>
             <p id="year3PrevClose"></p> 
@@ -133,12 +133,14 @@
             <p id="year3DailyLow"></p> 
             <p id="year3Turnover"></p>                
     </div>
+    <div id="loader3y" ng-show="loaderStatus"  class="lds-ripple"><div></div><div></div></div>
+    
 <canvas id="chart3Year"></canvas>
 </div>
 
 <div ng-hide="hideval5y" class="chart-container">
-    <button onclick="resetZoom5year()">Reset Zoom</button>
-    <div class="InfoBox">
+    <button onclick="resetZoom5Year()">Reset Zoom</button>
+    <div id="infoBox5y" class="InfoBox">
             <p id="year5Date"></p>
             <p id="year5LockRate"></p>
             <p id="year5PrevClose"></p> 
@@ -147,6 +149,7 @@
             <p id="year5DailyLow"></p> 
             <p id="year5Turnover"></p>                
     </div>
+    <div id="loader5y" ng-show="loaderStatus"  class="lds-ripple"><div></div><div></div></div>
 <canvas id="chart5Year"></canvas>
 </div>
 
