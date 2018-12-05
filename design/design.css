@@ -1,5 +1,5 @@
 body {  
-    background: rgb(255, 255, 255);
+    background-color: #dce9f6;
     padding: 16px;
   }
 
@@ -8,22 +8,59 @@ body {
   }
   
   canvas {
-    border: 1px dotted rgb(169, 209, 255);
+    border: 0px dotted rgb(169, 209, 255);
+          background-color: #fff;
+      padding-top:5px;
+      padding-bottom:5px;
   }
   
   .chart-container {
     position: relative;
     margin: auto;
-    height: 450px;
-    width: 800px;
+    height: 400px;
+    width: 100%;
   }
 
   .mainButtons {
+             width:100%;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
     position: relative;
-    margin: auto;
-    height: 80px;
-    width: 800px;
+    width: 100%;
   }
+input[type="button"]{
+    background-color:#fff;
+    border: 2px solid #386fa7;
+    color:#386fa7;
+    padding: 5px 15px 5px 15px;
+    margin:4px;
+    cursor: pointer;
+}
+input[type="button"]:hover{
+    background-color:#386fa7;
+    border: 2px solid #386fa7;
+    color:#fff;
+    padding: 5px 15px 5px 15px;
+    outline:0;
+    cursor: pointer;
+}
+input[type="button"]:focus{
+    background-color:#386fa7;
+    border: 1px solid #386fa7;
+    color:#fff;
+    padding: 5px 15px 5px 15px;
+    outline:0;
+    cursor: pointer;
+}
+.rz-dice{
+      background-color:#fff;
+    border: 1px solid #386fa7;
+    color:#386fa7;
+    padding: 5px 15px 5px 15px;
+    margin-top:10px; 
+    cursor: pointer;
+}
   .debug {
     position: relative;
     margin: auto;
@@ -33,16 +70,35 @@ body {
     background-color: black;
     }
     .InfoBox{
-      display: table;
-      clear: both;
-      margin-top: 3px;
-      margin-bottom: 3px;
-      white-space: nowrap;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 0.5px;
-      width: auto;
-      position: relative;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: small;
+       width:100%;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: flex-end;
+       text-align: center;
+       font-family: "Arial", Sans-serif;
+       flex-direction:row;
+       background-color:#dce9f6;
+       margin:0px;
+       box-sizing: border-box;
     }
+    .data{
+      line-height: 0px;
+      text-align: center;
+      font-size:10px;
+      padding-left:7px;
+      padding-right:7px;
+    }
+
+@media screen and (max-width: 100px){
+  .data{
+    font-size:10px;
+    width: 100%;
+    padding:0px 0px 0px 0px !important;
+  }
+}
+
+@media screen and (max-width: 800px){
+        .InfoBox{
+       justify-content: center;
+    }
+}

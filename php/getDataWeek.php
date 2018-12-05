@@ -61,7 +61,7 @@ $todayDate=date("dmY");
 #echo "<br>";
 #END test dates
 
-$shiftValue="-4";
+$shiftValue="-7";
 $shiftDate=date("dmY",strtotime($shiftValue.' days'));
 
 #test shifted dates
