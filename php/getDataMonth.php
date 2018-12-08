@@ -1,10 +1,11 @@
 <?php
 #Month - dataset
 #Graph datasets server side functionality
-#Test url: https://irwebsites.co.il/workground/getDataMonth.php
+#Test url: https://irwebsites.co.il/workground/php/getDataMonth.php
 
 #Connect to DB
 include "/code/mysql/database.php";
+include "/var/www/html/master/public/workground/php/globalConfig.php";
 
 #echo "Graph dataserver - server side - START";
 
@@ -16,13 +17,14 @@ $lengthPresentationJSON = sizeof($json_data_presentation);
 
 function historicalFunction($shiftDate,$todayDate) {
     $curl = curl_init();
+    global $globalCC;
     
     #Dynamic API Path
-    $path="https://api.gto.co.il:9005/v2/json/market/history?key=475020&fromDate=".$shiftDate."&toDate=".$todayDate;
+    $path="https://api.gto.co.il:9005/v2/json/market/history?key=".$globalCC."&fromDate=".$shiftDate."&toDate=".$todayDate;
     
- #  echo "Path:"."<br>";
- #  echo $path;
- #  echo "<br>";
+   #echo "Path:"."<br>";
+   #echo $path;
+   #echo "<br>";
     
     global $json_data_presentation;
     
