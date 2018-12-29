@@ -30,7 +30,6 @@
 
 <body ng-app="chartsApp" onload="initialize()">
 
-
 <div  ng-controller="mainController">
 
 <div id="contentLoader" ng-show="loaderStatus"  class="lds-ripple"><div></div><div></div></div>
@@ -39,14 +38,14 @@
 
 <!--Show/Hide buttons-->
 <div  class="mainButtons">
-<input type="button" id="dailyFlag" ng-click="showHideFunc('showDaily');" value="Daily">
-<input type="button" ng-click="showHideFunc('showWeek');" value="Week"> 
-<input type="button" ng-click="showHideFunc('showMonth');" value="Month">
-<input type="button" ng-click="showHideFunc('show3Month');" value="3 Months">
-<input type="button" ng-click="showHideFunc('show6Month');" value="6 Months">
-<input type="button" ng-click="showHideFunc('showYear');" value="Year" autofocus>
-<input type="button" ng-click="showHideFunc('show3year');" value="3 Years">
-<input type="button" ng-click="showHideFunc('show5year');" value="5 Years">
+<input type="button" class="btn-dice" id="dailyFlag" ng-click="showHideFunc('showDaily');" value="Daily">
+<input type="button" class="btn-dice" ng-click="showHideFunc('showWeek');" value="Week"> 
+<input type="button" class="btn-dice" ng-click="showHideFunc('showMonth');" value="Month">
+<input type="button" class="btn-dice" ng-click="showHideFunc('show3Month');" value="3 Months">
+<input type="button" class="btn-dice" ng-click="showHideFunc('show6Month');" value="6 Months">
+<input type="button" class="btn-dice" ng-click="showHideFunc('showYear');" value="Year" autofocus>
+<input type="button" class="btn-dice" ng-click="showHideFunc('show3year');" value="3 Years">
+<input type="button" class="btn-dice" ng-click="showHideFunc('show5year');" value="5 Years">
 </div>
 
 <!--Weekly chart-->
@@ -203,7 +202,6 @@
         
     </div>
     <!--Debug section-->
-
 </body>
 
 </html>

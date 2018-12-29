@@ -1,15 +1,15 @@
 body {  
-    background-color: #dce9f6;
-    padding: 16px;
+    margin:0;
+    padding:10px;
   }
-
   .chartsAppMain{
     display: none;
   }
   
   canvas {
-    border: 0px dotted rgb(169, 209, 255);
-          background-color: #fff;
+      border-style: solid;
+      border-width: 1px;
+      background-color: #fff;
       padding-top:5px;
       padding-bottom:5px;
   }
@@ -29,29 +29,25 @@ body {
     position: relative;
     width: 100%;
   }
-input[type="button"]{
+.btn-dice{
     background-color:#fff;
-    border: 2px solid #386fa7;
-    color:#386fa7;
+    color:#333;
+    border: 1px solid #333;
+    border-radius: 4px;
     padding: 5px 15px 5px 15px;
     margin:4px;
     cursor: pointer;
+  outline: 0;
 }
-input[type="button"]:hover{
-    background-color:#386fa7;
-    border: 2px solid #386fa7;
+.btn-dice:hover{
+    background-color:#333!important;
+    border: 1px solid #333;
     color:#fff;
-    padding: 5px 15px 5px 15px;
-    outline:0;
-    cursor: pointer;
 }
-input[type="button"]:focus{
-    background-color:#386fa7;
-    border: 1px solid #386fa7;
+.btn-dice:focus{
+    background-color:#333!important;
+    border: 1px solid #333;
     color:#fff;
-    padding: 5px 15px 5px 15px;
-    outline:0;
-    cursor: pointer;
 }
 .rz-dice{
       background-color:#fff;
@@ -77,7 +73,6 @@ input[type="button"]:focus{
        text-align: center;
        font-family: "Arial", Sans-serif;
        flex-direction:row;
-       background-color:#dce9f6;
        margin:0px;
        box-sizing: border-box;
     }
